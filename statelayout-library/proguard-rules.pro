@@ -56,3 +56,5 @@
  #utils
   -keep class com.stateLayout.utils.** { *; }
 
+  -dontwarn sun.misc.Unsafe
+
