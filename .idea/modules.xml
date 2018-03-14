@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StateLayout.iml" filepath="$PROJECT_DIR$/StateLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/statelayout-library/statelayout-library.iml" filepath="$PROJECT_DIR$/statelayout-library/statelayout-library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statelayout/statelayout-library.iml" filepath="$PROJECT_DIR$/statelayout/statelayout-library.iml" />
     </modules>
   </component>
 </project>

@@ -1,1 +1,1 @@
-include ':app', ':statelayout-library'
+include ':app', ':statelayout'
