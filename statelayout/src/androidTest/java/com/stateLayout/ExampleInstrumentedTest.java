@@ -1,4 +1,5 @@
-package com.stateLayoutImpl;
+package com.stateLayout;
+
 
 /**
  * Instrumented test, which will execute on an Android device.
