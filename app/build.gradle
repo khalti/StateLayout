@@ -41,5 +41,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
 //    implementation project(':statelayout')
 
-    implementation 'com.khalti:statelayout:1.0.0'
+    implementation('com.khalti:statelayout:1.0.1') {
+        changing = true
+    }
 }
