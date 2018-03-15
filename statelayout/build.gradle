@@ -56,11 +56,6 @@ dependencies {
     /*Android Animations*/
     implementation ui.nineoldanimations
 
-    /*ReactiveX*/
-    implementation rx.rxjava
-    implementation rx.rxandroid
-    implementation rx.rxProguard
-
     /*RxBinding*/
     implementation rx.rxBinding
     implementation rx.rxRecyclerBinding
