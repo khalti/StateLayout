@@ -27,37 +27,15 @@
 -keep class com.nineoldandroids.view.** { *; }
 -keep interface com.nineoldandroids.view.** { *; }
 
-# Rxjava
- -keep class rx.schedulers.Schedulers {
-     public static <methods>;
- }
- -keep class rx.schedulers.ImmediateScheduler {
-     public <methods>;
- }
- -keep class rx.schedulers.TestScheduler {
-     public <methods>;
- }
- -keep class rx.schedulers.Schedulers {
-     public static ** test();
- }
- -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-     long producerIndex;
-     long consumerIndex;
- }
- -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-     long producerNode;
-     long consumerNode;
- }
- -keep class rx.internal.util.unsafe.** {
-     *;
- }
+#Retrolambda
+-dontwarn java.lang.invoke.*
+-dontwarn **$$Lambda$*
 
- #Retrolambda
- -dontwarn java.lang.invoke.*
- -dontwarn **$$Lambda$*
+#utils
+-keep class com.stateLayout.utils.** { *; }
 
- #utils
-  -keep class com.stateLayout.utils.** { *; }
+#statelayout widget
+-keep class com.stateLayout.widget.** { *; }
 
-#  -dontwarn sun.misc.Unsafe
+-dontwarn sun.misc.Unsafe
 

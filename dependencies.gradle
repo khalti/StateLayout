@@ -19,7 +19,6 @@ ext {
 
     rx = [
             rxBinding        : "com.jakewharton.rxbinding:rxbinding:${rxBinding}",
-            rxRecyclerBinding: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:${rxBinding}",
     ]
 
     junitVersion = '4.12'
