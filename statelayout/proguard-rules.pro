@@ -48,6 +48,9 @@
      long producerNode;
      long consumerNode;
  }
+ -keep class rx.internal.util.unsafe.** {
+     *;
+ }
 
  #Retrolambda
  -dontwarn java.lang.invoke.*
@@ -56,5 +59,5 @@
  #utils
   -keep class com.stateLayout.utils.** { *; }
 
-  -dontwarn sun.misc.Unsafe
+#  -dontwarn sun.misc.Unsafe
 
