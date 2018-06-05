@@ -1,10 +1,10 @@
 ext {
 
-    supportVersion = '27.0.2'
+    supportVersion = '27.1.1'
 
     supportLibrary = [
-            appCompat: "com.android.support:appcompat-v7:${supportVersion}",
-            design   : "com.android.support:design:${supportVersion}"
+            appCompat: "com.android.support:appcompat-v7:$supportVersion",
+            design   : "com.android.support:design:$supportVersion"
     ]
 
     nineDroidVersion = '2.4.0'
@@ -14,11 +14,10 @@ ext {
             nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}"
     ]
 
-    rxBinding = '1.0.1'
-    rxAppCompatBindingVersion = "1.0.1"
+    rxBinding = '2.1.1'
 
     rx = [
-            rxBinding        : "com.jakewharton.rxbinding:rxbinding:${rxBinding}",
+            rxBinding        : "com.jakewharton.rxbinding2:rxbinding:${rxBinding}"
     ]
 
     junitVersion = '4.12'

@@ -6,21 +6,22 @@ import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.utils.GuavaUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class StateLayoutPresenter implements StateLayoutContract.Presenter {
 
     @NonNull
     private final StateLayoutContract.View view;
-    private CompositeSubscription compositeSubscription;
+    private CompositeDisposable compositeDisposable;
 
     private String loadingText = "Loading... Please wait", errorText = "Something went wrong";
     private int loadingImage, errorImage;
+    private boolean hasCustomLoadView = false, hasCustomErrorView = false;
 
     StateLayoutPresenter(@NonNull StateLayoutContract.View view) {
         this.view = GuavaUtil.checkNotNull(view);
         view.setPresenter(this);
-        compositeSubscription = new CompositeSubscription();
+        compositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -28,7 +29,12 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
         view.toggleIndented(show);
         view.toggleProgressBar(show);
         view.setIndentedMessage(show ? loadingText : errorText);
-        view.setIndentedImage(show ? loadingImage : errorImage);
+        view.toggleIndentedView(hasCustomLoadView);
+        if (hasCustomLoadView) {
+            view.setCustomIndentedView("load");
+        } else {
+            view.setIndentedImage(show ? loadingImage : errorImage);
+        }
         view.toggleTryAgainButton(false);
     }
 
@@ -36,7 +42,12 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     public void onErrorToggled(boolean show) {
         view.toggleIndented(show);
         view.setIndentedMessage(show ? errorText : loadingText);
-        view.setIndentedImage(show ? errorImage : loadingImage);
+        view.toggleIndentedView(hasCustomErrorView);
+        if (hasCustomErrorView) {
+            view.setCustomIndentedView("error");
+        } else {
+            view.setIndentedImage(show ? errorImage : loadingImage);
+        }
         view.toggleProgressBar(!show);
         view.toggleTryAgainButton(true);
     }
@@ -66,6 +77,16 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     }
 
     @Override
+    public void onSetCustomLoadingView(boolean hasView) {
+        this.hasCustomLoadView = hasView;
+    }
+
+    @Override
+    public void onSetCustomErrorView(boolean hasView) {
+        this.hasCustomErrorView = hasView;
+    }
+
+    @Override
     public void onSetProgressBarColor(int color) {
         view.setProgressBarColor(color);
     }
@@ -77,13 +98,13 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
 
     @Override
     public void onSetTryAgainListener(OnTryAgainListener onTryAgainListener) {
-        compositeSubscription.add(view.setButtonClickListener().subscribe(aVoid -> onTryAgainListener.onTryAgain()));
+        compositeDisposable.add(view.setButtonClickListener().subscribe(aVoid -> onTryAgainListener.onTryAgain()));
     }
 
     @Override
     public void onDestroy() {
-        if (EmptyUtil.isNotNull(compositeSubscription) && compositeSubscription.hasSubscriptions() && !compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.unsubscribe();
+        if (EmptyUtil.isNotNull(compositeDisposable) && !compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
         }
     }
 }
