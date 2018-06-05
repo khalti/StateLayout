@@ -2,7 +2,7 @@ package com.stateLayout.widget;
 
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 public interface StateLayoutContract {
     interface View {
@@ -13,15 +13,19 @@ public interface StateLayoutContract {
 
         void toggleTryAgainButton(boolean show);
 
+        void toggleIndentedView(boolean isCustom);
+
         void setIndentedMessage(String text);
 
         void setIndentedImage(int image);
+
+        void setCustomIndentedView(String viewType);
 
         void setProgressBarColor(int color);
 
         void setTryButtonColor(int color);
 
-        Observable<Void> setButtonClickListener();
+        Observable<Object> setButtonClickListener();
 
         Presenter getPresenter();
 
@@ -41,6 +45,10 @@ public interface StateLayoutContract {
         void onSetLoadingImage(int image);
 
         void onSetErrorImage(int image);
+
+        void onSetCustomLoadingView(boolean hasView);
+
+        void onSetCustomErrorView(boolean hasView);
 
         void onSetProgressBarColor(int color);
 
