@@ -14,14 +14,16 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.stateLayout.R;
 import com.stateLayout.carbonX.widget.Button;
 import com.stateLayout.carbonX.widget.ProgressBar;
 import com.stateLayout.utils.EmptyUtil;
+import com.stateLayout.utils.LogUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
-import rx.Observable;
+import io.reactivex.Observable;
+
 
 public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
@@ -36,6 +38,9 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     private Button btnTryAgain;
     private ImageView ivIndented;
     private FrameLayout flContainer;
+    private FrameLayout flCustomView;
+
+    private View loadingView, errorView;
 
     public StateLayout(@NonNull Context context) {
         super(context);
@@ -89,6 +94,22 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     public void setErrorImage(int image) {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onSetErrorImage(image);
+        }
+    }
+
+    @Override
+    public void setCustomLoadView(View view) {
+        this.loadingView = view;
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomLoadingView(EmptyUtil.isNotNull(loadingView));
+        }
+    }
+
+    @Override
+    public void setCustomErrorView(View view) {
+        this.errorView = view;
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
         }
     }
 
@@ -152,6 +173,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             ivIndented = mainView.findViewById(R.id.ivIndented);
             btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
             flContainer = mainView.findViewById(R.id.flContainer);
+            flCustomView = mainView.findViewById(R.id.flCustomView);
 
             presenter = new State().getPresenter();
             presenter.onSetErrorText(errorText);
@@ -188,6 +210,12 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         }
 
         @Override
+        public void toggleIndentedView(boolean isCustom) {
+            flCustomView.setVisibility(isCustom ? VISIBLE : GONE);
+            ivIndented.setVisibility(!isCustom ? VISIBLE : GONE);
+        }
+
+        @Override
         public void setIndentedMessage(String text) {
             tvMessage.setText(text);
         }
@@ -195,6 +223,12 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         @Override
         public void setIndentedImage(int image) {
             ivIndented.setImageResource(image);
+        }
+
+        @Override
+        public void setCustomIndentedView(String viewType) {
+            flCustomView.removeAllViews();
+            flCustomView.addView(viewType.equals("load") ? loadingView : errorView);
         }
 
         @Override
@@ -208,7 +242,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         }
 
         @Override
-        public Observable<Void> setButtonClickListener() {
+        public Observable<Object> setButtonClickListener() {
             return RxView.clicks(btnTryAgain);
         }
 

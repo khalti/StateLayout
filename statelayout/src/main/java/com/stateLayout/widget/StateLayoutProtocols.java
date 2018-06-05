@@ -1,5 +1,7 @@
 package com.stateLayout.widget;
 
+import android.view.View;
+
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 public interface StateLayoutProtocols {
@@ -15,6 +17,10 @@ public interface StateLayoutProtocols {
     void setLoadingImage(int image);
 
     void setErrorImage(int image);
+
+    void setCustomLoadView(View view);
+
+    void setCustomErrorView(View view);
 
     void setProgressBarColor(int color);
 
