@@ -17,7 +17,7 @@ install {
                 // Add your description here
                 name properties.getProperty("library.name")
                 description properties.getProperty("library.description")
-                url 'https://github.com/janakitech/khalti-android'
+                url properties.getProperty("site.url")
 
                 // Set your license
                 licenses {
@@ -34,9 +34,9 @@ install {
                     }
                 }
                 scm {
-                    connection 'https://github.com/khalti/StateLayout'
-                    developerConnection 'https://github.com/khalti/StateLayout'
-                    url 'https://github.com/khalti/StateLayout'
+                    connection properties.getProperty("site.url")
+                    developerConnection properties.getProperty("site.url")
+                    url properties.getProperty("site.url")
                 }
             }
         }

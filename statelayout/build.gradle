@@ -56,14 +56,8 @@ dependencies {
     /*Android Animations*/
     implementation ui.nineoldanimations
 
-    /*ReactiveX*/
-    implementation rx.rxjava
-    implementation rx.rxandroid
-    implementation rx.rxProguard
-
     /*RxBinding*/
     implementation rx.rxBinding
-    implementation rx.rxRecyclerBinding
 
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.3'
     /*---------------------------------------------------------------------------------------------------------------------*/
