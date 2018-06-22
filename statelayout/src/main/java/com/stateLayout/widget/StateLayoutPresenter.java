@@ -6,6 +6,7 @@ import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.utils.GuavaUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class StateLayoutPresenter implements StateLayoutContract.Presenter {
@@ -99,6 +100,11 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     @Override
     public void onSetTryAgainListener(OnTryAgainListener onTryAgainListener) {
         compositeDisposable.add(view.setButtonClickListener().subscribe(aVoid -> onTryAgainListener.onTryAgain()));
+    }
+
+    @Override
+    public Observable<Object> onSetTryAgainListener() {
+        return view.setButtonClickListener();
     }
 
     @Override

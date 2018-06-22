@@ -38,6 +38,8 @@ dependencies {
 
     /*ButterKnife*/
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
+    implementation rx.rxjava
+    implementation rx.rxandroid
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
     implementation project(':statelayout')
 

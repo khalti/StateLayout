@@ -56,6 +56,8 @@ public interface StateLayoutContract {
 
         void onSetTryAgainListener(OnTryAgainListener onTryAgainListener);
 
+        Observable<Object> onSetTryAgainListener();
+
         void onDestroy();
     }
 }
