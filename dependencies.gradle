@@ -14,10 +14,14 @@ ext {
             nineoldanimations: "com.nineoldandroids:library:${nineDroidVersion}"
     ]
 
+    rxVersion = '2.1.14'
+    rxAndroidVersion = '2.0.2'
     rxBinding = '2.1.1'
 
     rx = [
-            rxBinding        : "com.jakewharton.rxbinding2:rxbinding:${rxBinding}"
+            rxBinding: "com.jakewharton.rxbinding2:rxbinding:${rxBinding}",
+            rxjava   : "io.reactivex.rxjava2:rxjava:${rxVersion}",
+            rxandroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
     ]
 
     junitVersion = '4.12'

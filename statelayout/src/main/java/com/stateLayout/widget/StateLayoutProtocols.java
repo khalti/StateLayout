@@ -4,6 +4,8 @@ import android.view.View;
 
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
+import io.reactivex.Observable;
+
 public interface StateLayoutProtocols {
 
     void toggleLoading(boolean show);
@@ -27,6 +29,8 @@ public interface StateLayoutProtocols {
     void setTryButtonColor(int color);
 
     void setOnTryAgainListener(OnTryAgainListener onTryAgainListener);
+
+    Observable<Object> setOnTryAgainListener();
 
     void onDestroy();
 }

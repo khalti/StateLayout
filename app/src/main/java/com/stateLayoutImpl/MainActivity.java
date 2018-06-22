@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.widget.StateLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         ((ImageView) errorView.findViewById(R.id.iv)).setImageResource(R.drawable.ic_launcher_background);
         slSample.setCustomErrorView(errorView);*/
 
-        slSample.setOnTryAgainListener(() -> load(true));
+//        slSample.setOnTryAgainListener(() -> load(true));
+        Observable<Object> tryAgain = slSample.setOnTryAgainListener();
+        if (EmptyUtil.isNotNull(tryAgain)) {
+            new CompositeDisposable().add(tryAgain.subscribe(o -> load(true)));
+        }
         load(false);
     }
 

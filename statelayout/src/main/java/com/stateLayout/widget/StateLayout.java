@@ -19,7 +19,6 @@ import com.stateLayout.R;
 import com.stateLayout.carbonX.widget.Button;
 import com.stateLayout.carbonX.widget.ProgressBar;
 import com.stateLayout.utils.EmptyUtil;
-import com.stateLayout.utils.LogUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
@@ -132,6 +131,15 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onSetTryAgainListener(onTryAgainListener);
         }
+    }
+
+    @Override
+    @Nullable
+    public Observable<Object> setOnTryAgainListener() {
+        if (EmptyUtil.isNotNull(presenter)) {
+            return presenter.onSetTryAgainListener();
+        }
+        return null;
     }
 
     @Override
