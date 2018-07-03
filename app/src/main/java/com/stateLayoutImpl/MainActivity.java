@@ -3,8 +3,6 @@ package com.stateLayoutImpl;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.widget.StateLayout;
@@ -25,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        slSample.setErrorImage(R.drawable.ic_launcher_background);
+//        slSample.setErrorImage(R.drawable.ic_launcher_background);
 //        slSample.setLoadingImage(R.mipmap.cat);
 
-        View loadView = getLayoutInflater().inflate(R.layout.custom_view, null);
-        ((ImageView) loadView.findViewById(R.id.iv)).setImageResource(R.mipmap.cat);
-        slSample.setCustomLoadView(loadView);
+//        View loadView = getLayoutInflater().inflate(R.layout.custom_view, null);
+//        ((ImageView) loadView.findViewById(R.id.iv)).setImageResource(R.mipmap.cat);
+//        slSample.setCustomLoadView(loadView);
 
         /*View errorView = getLayoutInflater().inflate(R.layout.custom_view, null);
         ((ImageView) errorView.findViewById(R.id.iv)).setImageResource(R.drawable.ic_launcher_background);
