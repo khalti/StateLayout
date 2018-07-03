@@ -15,8 +15,8 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     private final StateLayoutContract.View view;
     private CompositeDisposable compositeDisposable;
 
-    private String loadingText = "Loading... Please wait", errorText = "Something went wrong";
-    private int loadingImage, errorImage;
+    private String loadingText = "", errorText = "";
+    private int loadingImage = -998, errorImage = -999;
     private boolean hasCustomLoadView = false, hasCustomErrorView = false;
 
     StateLayoutPresenter(@NonNull StateLayoutContract.View view) {

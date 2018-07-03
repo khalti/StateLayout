@@ -7,9 +7,7 @@
     <com.stateLayout.widget.StateLayout
         android:id="@+id/slSample"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:errorText="There was an error fetching names"
-        app:loadingText="Fetching names">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
