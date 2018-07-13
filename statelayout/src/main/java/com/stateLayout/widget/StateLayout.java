@@ -19,7 +19,6 @@ import com.stateLayout.R;
 import com.stateLayout.carbonX.widget.Button;
 import com.stateLayout.carbonX.widget.ProgressBar;
 import com.stateLayout.utils.EmptyUtil;
-import com.stateLayout.utils.LogUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
@@ -37,8 +36,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     private AppCompatTextView tvMessage;
     private Button btnTryAgain;
     private ImageView ivIndented;
-    private FrameLayout flContainer;
-    private FrameLayout flCustomView;
+    private FrameLayout flContainer, flCustomView, flLoad;
 
     private View loadingView, errorView;
 
@@ -164,8 +162,8 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.app, 0, 0);
         String errorText = typedArray.getString(R.styleable.app_errorText);
         String loadingText = typedArray.getString(R.styleable.app_loadingText);
-        int progressBarColor = typedArray.getInt(R.styleable.app_progressBarColor, R.color.accent);
-        int tryButtonColor = typedArray.getInt(R.styleable.app_tryButtonColor, R.color.primary);
+        int progressBarColor = typedArray.getInt(R.styleable.app_progressBarColor, R.color.sl_progress);
+        int tryButtonColor = typedArray.getInt(R.styleable.app_tryButtonColor, R.color.sl_try_again);
         int loadingImage = typedArray.getResourceId(R.styleable.app_loadingImage, -998);
         int errorImage = typedArray.getResourceId(R.styleable.app_errorImage, -999);
 
@@ -183,6 +181,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
             flContainer = mainView.findViewById(R.id.flContainer);
             flCustomView = mainView.findViewById(R.id.flCustomView);
+            flLoad = mainView.findViewById(R.id.flLoad);
 
             presenter = new State().getPresenter();
             presenter.onSetErrorText(errorText);
@@ -210,7 +209,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void toggleProgressBar(boolean show) {
-            pdLoad.setVisibility(show ? VISIBLE : GONE);
+            flLoad.setVisibility(show ? VISIBLE : GONE);
         }
 
         @Override
@@ -236,7 +235,6 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void setIndentedImage(int image) {
-            LogUtil.log("image", image);
             if (image > 0) {
                 ivIndented.setVisibility(VISIBLE);
                 ivIndented.setImageResource(image);
