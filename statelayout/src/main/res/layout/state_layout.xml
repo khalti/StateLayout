@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <FrameLayout
@@ -45,18 +46,29 @@
                 android:visibility="visible"
                 app:srcCompat="@drawable/ic_photo" />
 
-            <com.stateLayout.carbonX.widget.ProgressBar
-                android:id="@+id/pdLoad"
-                android:layout_width="150dp"
-                android:layout_height="4dp"
+            <FrameLayout
+                android:id="@+id/flLoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/doubleBottomMargin"
                 android:layout_marginLeft="@dimen/globalPadding"
-                android:layout_marginRight="@dimen/globalPadding"
-                android:animateLayoutChanges="true"
-                android:background="@color/disabled"
-                app:carbonX_progressStyle="bar_indeterminate"
-                app:carbonX_tint="@color/accent" />
+                android:layout_marginRight="@dimen/globalPadding">
+
+                <com.stateLayout.carbonX.widget.ProgressBar
+                    android:id="@+id/pdLoad"
+                    android:layout_width="150dp"
+                    android:layout_height="4dp"
+                    android:animateLayoutChanges="true"
+                    app:carbonX_progressStyle="bar_indeterminate"
+                    app:carbonX_tint="@color/accent" />
+
+                <View
+                    android:layout_width="150dp"
+                    android:layout_height="4dp"
+                    android:alpha="0.38"
+                    android:background="@color/sl_progress" />
+            </FrameLayout>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tvMessage"
