@@ -2,8 +2,8 @@ ext {
     appVersionCode = 10000
     appVersionName = "1.0.0"
 
-    stateLayoutVersionCode = 10400
-    stateLayoutVersionName = "1.4.0"
+    stateLayoutVersionCode = 1004000
+    stateLayoutVersionName = "1.04.00"
 
     compileSdk = 27
     buildToolVersion = '27.0.3'
