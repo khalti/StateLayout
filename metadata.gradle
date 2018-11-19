@@ -5,9 +5,9 @@ ext {
     stateLayoutVersionCode = 1004000
     stateLayoutVersionName = "1.04.00"
 
-    compileSdk = 27
-    buildToolVersion = '27.0.3'
+    compileSdk = 28
+    buildToolVersion = '28.0.3'
     minSdk = 14
-    targetSdk = 27
+    targetSdk = 28
     renderScriptTarget = 20
 }
