@@ -36,9 +36,9 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     private AppCompatTextView tvMessage;
     private MaterialButton btnTryAgain;
     private ImageView ivIndented;
-    private FrameLayout flContainer, flCustomView, flLoad;
+    private FrameLayout flContainer, flCustomView, flLoad, flCustomTryAgain;
 
-    private View loadingView, errorView;
+    private View loadingView, errorView, tryAgainView;
 
     public StateLayout(@NonNull Context context) {
         super(context);
@@ -119,6 +119,14 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     }
 
     @Override
+    public void setCustomTryAgainButton(View view) {
+        this.tryAgainView = view;
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+        }
+    }
+
+    @Override
     public void setProgressBarColor(int color) {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onSetProgressBarColor(color);
@@ -189,6 +197,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             flContainer = mainView.findViewById(R.id.flContainer);
             flCustomView = mainView.findViewById(R.id.flCustomView);
             flLoad = mainView.findViewById(R.id.flLoad);
+            flCustomTryAgain = mainView.findViewById(R.id.flCustomTryAgain);
 
             presenter = new State().getPresenter();
             presenter.onSetErrorText(errorText);
@@ -221,7 +230,11 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void toggleTryAgainButton(boolean show) {
-            btnTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            if (EmptyUtil.isNotNull(tryAgainView)) {
+                flCustomTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            } else {
+                btnTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            }
         }
 
         @Override
@@ -257,6 +270,14 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         }
 
         @Override
+        public void setCustomTryAgainView() {
+            flCustomTryAgain.removeAllViews();
+            btnTryAgain.setVisibility(INVISIBLE);
+            flCustomTryAgain.setVisibility(VISIBLE);
+            flCustomTryAgain.addView(tryAgainView);
+        }
+
+        @Override
         public void setProgressBarColor(int color) {
             pdLoad.setIndeterminateTintList(getResources().getColorStateList(color));
         }
@@ -268,7 +289,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public Observable<Object> setButtonClickListener() {
-            return RxView.clicks(btnTryAgain);
+            return RxView.clicks(EmptyUtil.isNotNull(tryAgainView) ? tryAgainView : btnTryAgain);
         }
 
         @Override

@@ -26,6 +26,8 @@ public interface StateLayoutProtocols {
 
     void setCustomErrorView(View view);
 
+    void setCustomTryAgainButton(View view);
+
     void setProgressBarColor(int color);
 
     void setTryButtonColor(int color);

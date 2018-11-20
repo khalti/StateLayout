@@ -93,6 +93,13 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     }
 
     @Override
+    public void onSetCustomTryAgainView(boolean hasView) {
+        if (hasView) {
+            view.setCustomTryAgainView();
+        }
+    }
+
+    @Override
     public void onSetProgressBarColor(int color) {
         view.setProgressBarColor(color);
     }

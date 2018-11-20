@@ -69,8 +69,8 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:indeterminate="true"
-                    app:mpb_progressStyle="horizontal"
-                    app:mpb_indeterminateTint="@color/sl_progress" />
+                    app:mpb_indeterminateTint="@color/sl_progress"
+                    app:mpb_progressStyle="horizontal" />
             </FrameLayout>
 
             <android.support.v7.widget.AppCompatTextView
@@ -86,6 +86,17 @@
                 android:textSize="@dimen/head"
                 android:visibility="visible"
                 app:fontFamily="@font/roboto" />
+
+            <FrameLayout
+                android:id="@+id/flCustomTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/globalPadding"
+                android:layout_marginTop="@dimen/doubleBottomMargin"
+                android:layout_marginRight="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/doubleBottomMargin"
+                android:visibility="gone" />
 
             <android.support.design.button.MaterialButton
                 android:id="@+id/btnTryAgain"
