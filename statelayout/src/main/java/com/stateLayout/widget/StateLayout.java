@@ -181,6 +181,8 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         int tryButtonColor = typedArray.getInt(R.styleable.app_tryButtonColor, R.color.sl_try_again);
         int loadingImage = typedArray.getResourceId(R.styleable.app_loadingImage, -998);
         int errorImage = typedArray.getResourceId(R.styleable.app_errorImage, -999);
+        boolean hasTryAgain = typedArray.getBoolean(R.styleable.app_has_try_again, true);
+        int tId = typedArray.getResourceId(R.styleable.app_custom_try_again, -999);
 
         typedArray.recycle();
 
@@ -206,6 +208,12 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             presenter.onSetTryButtonColor(tryButtonColor);
             presenter.onSetErrorImage(errorImage);
             presenter.onSetLoadingImage(loadingImage);
+            presenter.onTryAgainToggled(hasTryAgain);
+
+            if (tId > 0) {
+                tryAgainView = LayoutInflater.from(context).inflate(tId, flCustomTryAgain, false);
+                presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+            }
         }
     }
 

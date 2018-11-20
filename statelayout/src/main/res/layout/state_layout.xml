@@ -115,6 +115,7 @@
                 android:visibility="invisible"
                 app:cornerRadius="2dp"
                 app:rippleColor="@color/defaultRipple" />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </merge>

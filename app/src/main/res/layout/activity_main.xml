@@ -46,5 +46,6 @@
                 android:text="Text"
                 android:textSize="34sp" />
         </com.stateLayout.widget.StateLayout>
+
     </com.otaliastudios.nestedscrollcoordinatorlayout.NestedScrollCoordinatorLayout>
 </android.support.design.widget.CoordinatorLayout>

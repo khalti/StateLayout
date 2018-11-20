@@ -7,5 +7,7 @@
         <attr name="tryButtonColor" format="reference|color" />
         <attr name="loadingImage" format="reference" />
         <attr name="errorImage" format="reference" />
+        <attr name="has_try_again" format="boolean" />
+        <attr name="custom_try_again" format="reference" />
     </declare-styleable>
 </resources>
