@@ -38,6 +38,8 @@ public interface StateLayoutContract {
 
         void onErrorToggled(boolean show);
 
+        void onTryAgainToggled(boolean show);
+
         void onSetErrorText(String text);
 
         void onSetLoadingText(String text);

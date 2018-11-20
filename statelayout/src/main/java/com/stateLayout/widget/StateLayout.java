@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
@@ -16,12 +17,11 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.stateLayout.R;
-import com.stateLayout.carbonX.widget.Button;
-import com.stateLayout.carbonX.widget.ProgressBar;
 import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 
 public class StateLayout extends FrameLayout implements StateLayoutProtocols {
@@ -32,9 +32,9 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
     /*Views*/
     private NestedScrollView nsvIndented;
-    private ProgressBar pdLoad;
+    private MaterialProgressBar pdLoad;
     private AppCompatTextView tvMessage;
-    private Button btnTryAgain;
+    private MaterialButton btnTryAgain;
     private ImageView ivIndented;
     private FrameLayout flContainer, flCustomView, flLoad;
 
@@ -64,6 +64,13 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     public void toggleError(boolean show) {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onErrorToggled(show);
+        }
+    }
+
+    @Override
+    public void toggleTryAgain(boolean show) {
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onTryAgainToggled(show);
         }
     }
 
@@ -251,12 +258,12 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void setProgressBarColor(int color) {
-            pdLoad.setTint(getResources().getColorStateList(color));
+            pdLoad.setIndeterminateTintList(getResources().getColorStateList(color));
         }
 
         @Override
         public void setTryButtonColor(int color) {
-            btnTryAgain.setBackgroundTint(getResources().getColorStateList(color));
+            btnTryAgain.setBackgroundTintList(getResources().getColorStateList(color));
         }
 
         @Override

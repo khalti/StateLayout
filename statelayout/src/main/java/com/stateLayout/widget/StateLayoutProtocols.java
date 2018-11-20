@@ -12,6 +12,8 @@ public interface StateLayoutProtocols {
 
     void toggleError(boolean show);
 
+    void toggleTryAgain(boolean show);
+
     void setLoadingText(String text);
 
     void setErrorText(String text);
