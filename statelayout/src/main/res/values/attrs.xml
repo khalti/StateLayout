@@ -9,5 +9,7 @@
         <attr name="errorImage" format="reference" />
         <attr name="has_try_again" format="boolean" />
         <attr name="custom_try_again" format="reference" />
+        <attr name="custom_load" format="reference" />
+        <attr name="custom_error" format="reference" />
     </declare-styleable>
 </resources>

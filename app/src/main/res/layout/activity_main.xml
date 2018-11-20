@@ -37,6 +37,8 @@
             android:id="@+id/slSample"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:custom_error="@layout/custom_view"
+            app:custom_try_again="@layout/custom_try_again_view"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <android.support.v7.widget.AppCompatTextView
@@ -46,6 +48,5 @@
                 android:text="Text"
                 android:textSize="34sp" />
         </com.stateLayout.widget.StateLayout>
-
     </com.otaliastudios.nestedscrollcoordinatorlayout.NestedScrollCoordinatorLayout>
 </android.support.design.widget.CoordinatorLayout>

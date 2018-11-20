@@ -183,6 +183,8 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         int errorImage = typedArray.getResourceId(R.styleable.app_errorImage, -999);
         boolean hasTryAgain = typedArray.getBoolean(R.styleable.app_has_try_again, true);
         int tId = typedArray.getResourceId(R.styleable.app_custom_try_again, -999);
+        int lId = typedArray.getResourceId(R.styleable.app_custom_load, -999);
+        int eId = typedArray.getResourceId(R.styleable.app_custom_error, -999);
 
         typedArray.recycle();
 
@@ -213,6 +215,16 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             if (tId > 0) {
                 tryAgainView = LayoutInflater.from(context).inflate(tId, flCustomTryAgain, false);
                 presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+            }
+
+            if (lId > 0) {
+                loadingView = LayoutInflater.from(context).inflate(lId, flCustomView, false);
+                presenter.onSetCustomLoadingView(EmptyUtil.isNotNull(loadingView));
+            }
+
+            if (eId > 0) {
+                errorView = LayoutInflater.from(context).inflate(eId, flCustomView, false);
+                presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
             }
         }
     }
