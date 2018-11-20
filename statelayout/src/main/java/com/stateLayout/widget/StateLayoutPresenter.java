@@ -17,7 +17,7 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
 
     private String loadingText = "", errorText = "";
     private int loadingImage = -998, errorImage = -999;
-    private boolean hasCustomLoadView = false, hasCustomErrorView = false;
+    private boolean hasCustomLoadView = false, hasCustomErrorView = false, shouldShowTryAgain = true;
 
     StateLayoutPresenter(@NonNull StateLayoutContract.View view) {
         this.view = GuavaUtil.checkNotNull(view);
@@ -50,7 +50,12 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
             view.setIndentedImage(show ? errorImage : loadingImage);
         }
         view.toggleProgressBar(!show);
-        view.toggleTryAgainButton(true);
+        view.toggleTryAgainButton(shouldShowTryAgain);
+    }
+
+    @Override
+    public void onTryAgainToggled(boolean show) {
+        shouldShowTryAgain = show;
     }
 
     @Override
@@ -85,6 +90,13 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     @Override
     public void onSetCustomErrorView(boolean hasView) {
         this.hasCustomErrorView = hasView;
+    }
+
+    @Override
+    public void onSetCustomTryAgainView(boolean hasView) {
+        if (hasView) {
+            view.setCustomTryAgainView();
+        }
     }
 
     @Override

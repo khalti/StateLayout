@@ -35,6 +35,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation supportLibrary.appCompat
+    implementation supportLibrary.design
+
+    implementation 'com.otaliastudios:nestedscrollcoordinatorlayout:1.0.3'
 
     /*ButterKnife*/
     implementation "com.jakewharton:butterknife:${butterKnifeVersion}"

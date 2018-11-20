@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         slSample.setCustomErrorView(errorView);*/
 
 //        slSample.setOnTryAgainListener(() -> load(true));
+//        slSample.setCustomTryAgainButton(LayoutInflater.from(this).inflate(R.layout.custom_try_again_view, slSample, false));
         Observable<Object> tryAgain = slSample.setOnTryAgainListener();
         if (EmptyUtil.isNotNull(tryAgain)) {
             new CompositeDisposable().add(tryAgain.subscribe(o -> load(true)));

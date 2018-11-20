@@ -21,6 +21,8 @@ public interface StateLayoutContract {
 
         void setCustomIndentedView(String viewType);
 
+        void setCustomTryAgainView();
+
         void setProgressBarColor(int color);
 
         void setTryButtonColor(int color);
@@ -38,6 +40,8 @@ public interface StateLayoutContract {
 
         void onErrorToggled(boolean show);
 
+        void onTryAgainToggled(boolean show);
+
         void onSetErrorText(String text);
 
         void onSetLoadingText(String text);
@@ -49,6 +53,8 @@ public interface StateLayoutContract {
         void onSetCustomLoadingView(boolean hasView);
 
         void onSetCustomErrorView(boolean hasView);
+
+        void onSetCustomTryAgainView(boolean hasView);
 
         void onSetProgressBarColor(int color);
 

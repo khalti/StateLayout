@@ -52,6 +52,9 @@ dependencies {
 
     /*RxBinding*/
     implementation rx.rxBinding
+
+
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.4.0'
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     /*Unit Testing*/

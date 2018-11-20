@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
@@ -16,12 +17,11 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.stateLayout.R;
-import com.stateLayout.carbonX.widget.Button;
-import com.stateLayout.carbonX.widget.ProgressBar;
 import com.stateLayout.utils.EmptyUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 
 public class StateLayout extends FrameLayout implements StateLayoutProtocols {
@@ -32,13 +32,13 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
     /*Views*/
     private NestedScrollView nsvIndented;
-    private ProgressBar pdLoad;
+    private MaterialProgressBar pdLoad;
     private AppCompatTextView tvMessage;
-    private Button btnTryAgain;
+    private MaterialButton btnTryAgain;
     private ImageView ivIndented;
-    private FrameLayout flContainer, flCustomView, flLoad;
+    private FrameLayout flContainer, flCustomView, flLoad, flCustomTryAgain;
 
-    private View loadingView, errorView;
+    private View loadingView, errorView, tryAgainView;
 
     public StateLayout(@NonNull Context context) {
         super(context);
@@ -64,6 +64,13 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     public void toggleError(boolean show) {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onErrorToggled(show);
+        }
+    }
+
+    @Override
+    public void toggleTryAgain(boolean show) {
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onTryAgainToggled(show);
         }
     }
 
@@ -108,6 +115,14 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         this.errorView = view;
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
+        }
+    }
+
+    @Override
+    public void setCustomTryAgainButton(View view) {
+        this.tryAgainView = view;
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
         }
     }
 
@@ -166,6 +181,10 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         int tryButtonColor = typedArray.getInt(R.styleable.app_tryButtonColor, R.color.sl_try_again);
         int loadingImage = typedArray.getResourceId(R.styleable.app_loadingImage, -998);
         int errorImage = typedArray.getResourceId(R.styleable.app_errorImage, -999);
+        boolean hasTryAgain = typedArray.getBoolean(R.styleable.app_has_try_again, true);
+        int tId = typedArray.getResourceId(R.styleable.app_custom_try_again, -999);
+        int lId = typedArray.getResourceId(R.styleable.app_custom_load, -999);
+        int eId = typedArray.getResourceId(R.styleable.app_custom_error, -999);
 
         typedArray.recycle();
 
@@ -182,6 +201,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             flContainer = mainView.findViewById(R.id.flContainer);
             flCustomView = mainView.findViewById(R.id.flCustomView);
             flLoad = mainView.findViewById(R.id.flLoad);
+            flCustomTryAgain = mainView.findViewById(R.id.flCustomTryAgain);
 
             presenter = new State().getPresenter();
             presenter.onSetErrorText(errorText);
@@ -190,6 +210,22 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
             presenter.onSetTryButtonColor(tryButtonColor);
             presenter.onSetErrorImage(errorImage);
             presenter.onSetLoadingImage(loadingImage);
+            presenter.onTryAgainToggled(hasTryAgain);
+
+            if (tId > 0) {
+                tryAgainView = LayoutInflater.from(context).inflate(tId, flCustomTryAgain, false);
+                presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+            }
+
+            if (lId > 0) {
+                loadingView = LayoutInflater.from(context).inflate(lId, flCustomView, false);
+                presenter.onSetCustomLoadingView(EmptyUtil.isNotNull(loadingView));
+            }
+
+            if (eId > 0) {
+                errorView = LayoutInflater.from(context).inflate(eId, flCustomView, false);
+                presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
+            }
         }
     }
 
@@ -214,7 +250,11 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void toggleTryAgainButton(boolean show) {
-            btnTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            if (EmptyUtil.isNotNull(tryAgainView)) {
+                flCustomTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            } else {
+                btnTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
+            }
         }
 
         @Override
@@ -250,18 +290,26 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         }
 
         @Override
+        public void setCustomTryAgainView() {
+            flCustomTryAgain.removeAllViews();
+            btnTryAgain.setVisibility(INVISIBLE);
+            flCustomTryAgain.setVisibility(VISIBLE);
+            flCustomTryAgain.addView(tryAgainView);
+        }
+
+        @Override
         public void setProgressBarColor(int color) {
-            pdLoad.setTint(getResources().getColorStateList(color));
+            pdLoad.setIndeterminateTintList(getResources().getColorStateList(color));
         }
 
         @Override
         public void setTryButtonColor(int color) {
-            btnTryAgain.setBackgroundTint(getResources().getColorStateList(color));
+            btnTryAgain.setBackgroundTintList(getResources().getColorStateList(color));
         }
 
         @Override
         public Observable<Object> setButtonClickListener() {
-            return RxView.clicks(btnTryAgain);
+            return RxView.clicks(EmptyUtil.isNotNull(tryAgainView) ? tryAgainView : btnTryAgain);
         }
 
         @Override

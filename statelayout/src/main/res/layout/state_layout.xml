@@ -51,23 +51,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/doubleBottomMargin"
                 android:layout_marginLeft="@dimen/globalPadding"
-                android:layout_marginRight="@dimen/globalPadding">
-
-                <com.stateLayout.carbonX.widget.ProgressBar
-                    android:id="@+id/pdLoad"
-                    android:layout_width="150dp"
-                    android:layout_height="4dp"
-                    android:animateLayoutChanges="true"
-                    app:carbonX_progressStyle="bar_indeterminate"
-                    app:carbonX_tint="@color/accent" />
+                android:layout_marginRight="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/doubleBottomMargin">
 
                 <View
                     android:layout_width="150dp"
                     android:layout_height="4dp"
+                    android:layout_gravity="center"
                     android:alpha="0.38"
                     android:background="@color/sl_progress" />
+
+                <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                    android:id="@+id/pdLoad"
+                    style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    app:mpb_indeterminateTint="@color/sl_progress"
+                    app:mpb_progressStyle="horizontal" />
             </FrameLayout>
 
             <android.support.v7.widget.AppCompatTextView
@@ -84,26 +87,35 @@
                 android:visibility="visible"
                 app:fontFamily="@font/roboto" />
 
-            <com.stateLayout.carbonX.widget.Button
-                android:id="@+id/btnTryAgain"
-                style="@style/carbonX_Button"
+            <FrameLayout
+                android:id="@+id/flCustomTryAgain"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/carbonX_buttonHeight"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/doubleBottomMargin"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="@dimen/globalPadding"
-                android:layout_marginRight="@dimen/globalPadding"
                 android:layout_marginTop="@dimen/doubleBottomMargin"
+                android:layout_marginRight="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/doubleBottomMargin"
+                android:visibility="gone" />
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/globalPadding"
+                android:layout_marginTop="@dimen/doubleBottomMargin"
+                android:layout_marginRight="@dimen/globalPadding"
+                android:layout_marginBottom="@dimen/doubleBottomMargin"
                 android:animateLayoutChanges="true"
-                android:minHeight="@dimen/carbonX_buttonHeight"
-                android:minWidth="@dimen/carbonX_buttonWidth"
+                android:minWidth="150dp"
                 android:text="@string/try_again"
-                android:textAppearance="@style/carbonX_TextAppearance.Button.Dark"
+                android:textAllCaps="true"
+                android:theme="@style/Theme.MaterialComponents"
                 android:visibility="invisible"
-                app:carbonX_cornerRadius="2dp"
-                app:carbonX_elevation="2dp"
-                app:carbonX_rippleColor="@color/defaultRipple"
-                app:carbonX_textAllCaps="true" />
+                app:cornerRadius="2dp"
+                app:rippleColor="@color/defaultRipple" />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </merge>

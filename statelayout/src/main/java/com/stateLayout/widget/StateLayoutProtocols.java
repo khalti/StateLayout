@@ -12,6 +12,8 @@ public interface StateLayoutProtocols {
 
     void toggleError(boolean show);
 
+    void toggleTryAgain(boolean show);
+
     void setLoadingText(String text);
 
     void setErrorText(String text);
@@ -23,6 +25,8 @@ public interface StateLayoutProtocols {
     void setCustomLoadView(View view);
 
     void setCustomErrorView(View view);
+
+    void setCustomTryAgainButton(View view);
 
     void setProgressBarColor(int color);
 
