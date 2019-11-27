@@ -2,8 +2,8 @@ package com.stateLayout.widget;
 
 import android.support.annotation.NonNull;
 
-import com.stateLayout.utils.EmptyUtil;
-import com.stateLayout.utils.GuavaUtil;
+import com.stateLayout.utils.SLEmptyUtil;
+import com.stateLayout.utils.SLGuavaUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
@@ -20,7 +20,7 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     private boolean hasCustomLoadView = false, hasCustomErrorView = false, shouldShowTryAgain = true;
 
     StateLayoutPresenter(@NonNull StateLayoutContract.View view) {
-        this.view = GuavaUtil.checkNotNull(view);
+        this.view = SLGuavaUtil.checkNotNull(view);
         view.setPresenter(this);
         compositeDisposable = new CompositeDisposable();
     }
@@ -60,14 +60,14 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
 
     @Override
     public void onSetErrorText(String text) {
-        if (EmptyUtil.isNotNull(text) && EmptyUtil.isNotEmpty(text)) {
+        if (SLEmptyUtil.isNotNull(text) && SLEmptyUtil.isNotEmpty(text)) {
             errorText = text;
         }
     }
 
     @Override
     public void onSetLoadingText(String text) {
-        if (EmptyUtil.isNotNull(text) && EmptyUtil.isNotEmpty(text)) {
+        if (SLEmptyUtil.isNotNull(text) && SLEmptyUtil.isNotEmpty(text)) {
             loadingText = text;
         }
     }
@@ -126,7 +126,7 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
 
     @Override
     public void onDestroy() {
-        if (EmptyUtil.isNotNull(compositeDisposable) && !compositeDisposable.isDisposed()) {
+        if (SLEmptyUtil.isNotNull(compositeDisposable) && !compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
         }
     }

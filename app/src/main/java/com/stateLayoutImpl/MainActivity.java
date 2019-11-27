@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.stateLayout.utils.EmptyUtil;
+import com.stateLayout.utils.SLEmptyUtil;
 import com.stateLayout.widget.StateLayout;
 
 import butterknife.BindView;
@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-//        slSample.setErrorImage(R.drawable.ic_launcher_background);
-//        slSample.setLoadingImage(R.mipmap.cat);
+        slSample.setErrorImage(R.drawable.ic_launcher_background);
+        slSample.setLoadingImage(R.mipmap.cat);
 
 //        View loadView = getLayoutInflater().inflate(R.layout.custom_view, null);
 //        ((ImageView) loadView.findViewById(R.id.iv)).setImageResource(R.mipmap.cat);
@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
 //        slSample.setOnTryAgainListener(() -> load(true));
 //        slSample.setCustomTryAgainButton(LayoutInflater.from(this).inflate(R.layout.custom_try_again_view, slSample, false));
+        slSample.setButtonText("custom text");
         Observable<Object> tryAgain = slSample.setOnTryAgainListener();
-        if (EmptyUtil.isNotNull(tryAgain)) {
+        if (SLEmptyUtil.isNotNull(tryAgain)) {
             new CompositeDisposable().add(tryAgain.subscribe(o -> load(true)));
         }
         load(false);

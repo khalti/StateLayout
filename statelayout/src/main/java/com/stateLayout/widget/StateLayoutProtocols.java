@@ -1,6 +1,7 @@
 package com.stateLayout.widget;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
@@ -37,6 +38,8 @@ public interface StateLayoutProtocols {
     void setOnTryAgainListener(OnTryAgainListener onTryAgainListener);
 
     Observable<Object> setOnTryAgainListener();
+
+    ImageView getIndentedImageView();
 
     void onDestroy();
 }

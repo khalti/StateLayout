@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/flContainer"
+        android:id="@+id/state_layout_flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible" />
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsvIndented"
+        android:id="@+id/state_layout_nsvIndented"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -25,7 +26,7 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/flCustomView"
+                android:id="@+id/state_layout_flCustomView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -35,7 +36,7 @@
                 android:visibility="gone" />
 
             <ImageView
-                android:id="@+id/ivIndented"
+                android:id="@+id/state_layout_ivIndented"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
@@ -47,7 +48,7 @@
                 app:srcCompat="@drawable/ic_photo" />
 
             <FrameLayout
-                android:id="@+id/flLoad"
+                android:id="@+id/state_layout_flLoad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,7 +64,7 @@
                     android:background="@color/sl_progress" />
 
                 <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-                    android:id="@+id/pdLoad"
+                    android:id="@+id/state_layout_pdLoad"
                     style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
                     android:layout_width="150dp"
                     android:layout_height="20dp"
@@ -74,7 +75,7 @@
             </FrameLayout>
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tvMessage"
+                android:id="@+id/state_layout_tvMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -88,7 +89,7 @@
                 app:fontFamily="@font/roboto" />
 
             <FrameLayout
-                android:id="@+id/flCustomTryAgain"
+                android:id="@+id/state_layout_flCustomTryAgain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -99,7 +100,7 @@
                 android:visibility="gone" />
 
             <android.support.design.button.MaterialButton
-                android:id="@+id/btnTryAgain"
+                android:id="@+id/state_layout_btnTryAgain"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -109,6 +110,7 @@
                 android:layout_marginBottom="@dimen/doubleBottomMargin"
                 android:animateLayoutChanges="true"
                 android:minWidth="150dp"
+                android:textColor="@color/white"
                 android:text="@string/try_again"
                 android:textAllCaps="true"
                 android:theme="@style/Theme.MaterialComponents"
