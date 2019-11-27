@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.stateLayout.R;
-import com.stateLayout.utils.EmptyUtil;
+import com.stateLayout.utils.SLEmptyUtil;
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
 import io.reactivex.Observable;
@@ -55,49 +55,49 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
     @Override
     public void toggleLoading(boolean show) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onLoadingToggled(show);
         }
     }
 
     @Override
     public void toggleError(boolean show) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onErrorToggled(show);
         }
     }
 
     @Override
     public void toggleTryAgain(boolean show) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onTryAgainToggled(show);
         }
     }
 
     @Override
     public void setLoadingText(String text) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetLoadingText(text);
         }
     }
 
     @Override
     public void setErrorText(String text) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetErrorText(text);
         }
     }
 
     @Override
     public void setLoadingImage(int image) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetLoadingImage(image);
         }
     }
 
     @Override
     public void setErrorImage(int image) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetErrorImage(image);
         }
     }
@@ -105,44 +105,51 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     @Override
     public void setCustomLoadView(View view) {
         this.loadingView = view;
-        if (EmptyUtil.isNotNull(presenter)) {
-            presenter.onSetCustomLoadingView(EmptyUtil.isNotNull(loadingView));
+        if (SLEmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomLoadingView(SLEmptyUtil.isNotNull(loadingView));
         }
     }
 
     @Override
     public void setCustomErrorView(View view) {
         this.errorView = view;
-        if (EmptyUtil.isNotNull(presenter)) {
-            presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
+        if (SLEmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomErrorView(SLEmptyUtil.isNotNull(errorView));
         }
     }
 
     @Override
     public void setCustomTryAgainButton(View view) {
         this.tryAgainView = view;
-        if (EmptyUtil.isNotNull(presenter)) {
-            presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+        if (SLEmptyUtil.isNotNull(presenter)) {
+            presenter.onSetCustomTryAgainView(SLEmptyUtil.isNotNull(tryAgainView));
+        }
+    }
+
+    @Override
+    public void setButtonText(String text) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
+            presenter.onSetTryButtonText(text);
         }
     }
 
     @Override
     public void setProgressBarColor(int color) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetProgressBarColor(color);
         }
     }
 
     @Override
     public void setTryButtonColor(int color) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetTryButtonColor(color);
         }
     }
 
     @Override
     public void setOnTryAgainListener(OnTryAgainListener onTryAgainListener) {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onSetTryAgainListener(onTryAgainListener);
         }
     }
@@ -150,22 +157,27 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     @Override
     @Nullable
     public Observable<Object> setOnTryAgainListener() {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             return presenter.onSetTryAgainListener();
         }
         return null;
     }
 
     @Override
+    public ImageView getIndentedImageView() {
+        return ivIndented;
+    }
+
+    @Override
     public void onDestroy() {
-        if (EmptyUtil.isNotNull(presenter)) {
+        if (SLEmptyUtil.isNotNull(presenter)) {
             presenter.onDestroy();
         }
     }
 
     @Override
     public void addView(View child, int index, ViewGroup.LayoutParams params) {
-        if (EmptyUtil.isNotNull(flContainer)) {
+        if (SLEmptyUtil.isNotNull(flContainer)) {
             flContainer.addView(child, index, params);
         } else {
             super.addView(child, index, params);
@@ -190,18 +202,18 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         View mainView;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (EmptyUtil.isNotNull(inflater)) {
+        if (SLEmptyUtil.isNotNull(inflater)) {
             mainView = inflater.inflate(R.layout.state_layout, this, true);
 
-            nsvIndented = mainView.findViewById(R.id.nsvIndented);
-            pdLoad = mainView.findViewById(R.id.pdLoad);
-            tvMessage = mainView.findViewById(R.id.tvMessage);
-            ivIndented = mainView.findViewById(R.id.ivIndented);
-            btnTryAgain = mainView.findViewById(R.id.btnTryAgain);
-            flContainer = mainView.findViewById(R.id.flContainer);
-            flCustomView = mainView.findViewById(R.id.flCustomView);
-            flLoad = mainView.findViewById(R.id.flLoad);
-            flCustomTryAgain = mainView.findViewById(R.id.flCustomTryAgain);
+            nsvIndented = mainView.findViewById(R.id.state_layout_nsvIndented);
+            pdLoad = mainView.findViewById(R.id.state_layout_pdLoad);
+            tvMessage = mainView.findViewById(R.id.state_layout_tvMessage);
+            ivIndented = mainView.findViewById(R.id.state_layout_ivIndented);
+            btnTryAgain = mainView.findViewById(R.id.state_layout_btnTryAgain);
+            flContainer = mainView.findViewById(R.id.state_layout_flContainer);
+            flCustomView = mainView.findViewById(R.id.state_layout_flCustomView);
+            flLoad = mainView.findViewById(R.id.state_layout_flLoad);
+            flCustomTryAgain = mainView.findViewById(R.id.state_layout_flCustomTryAgain);
 
             presenter = new State().getPresenter();
             presenter.onSetErrorText(errorText);
@@ -214,17 +226,17 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
             if (tId > 0) {
                 tryAgainView = LayoutInflater.from(context).inflate(tId, flCustomTryAgain, false);
-                presenter.onSetCustomTryAgainView(EmptyUtil.isNotNull(tryAgainView));
+                presenter.onSetCustomTryAgainView(SLEmptyUtil.isNotNull(tryAgainView));
             }
 
             if (lId > 0) {
                 loadingView = LayoutInflater.from(context).inflate(lId, flCustomView, false);
-                presenter.onSetCustomLoadingView(EmptyUtil.isNotNull(loadingView));
+                presenter.onSetCustomLoadingView(SLEmptyUtil.isNotNull(loadingView));
             }
 
             if (eId > 0) {
                 errorView = LayoutInflater.from(context).inflate(eId, flCustomView, false);
-                presenter.onSetCustomErrorView(EmptyUtil.isNotNull(errorView));
+                presenter.onSetCustomErrorView(SLEmptyUtil.isNotNull(errorView));
             }
         }
     }
@@ -250,7 +262,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void toggleTryAgainButton(boolean show) {
-            if (EmptyUtil.isNotNull(tryAgainView)) {
+            if (SLEmptyUtil.isNotNull(tryAgainView)) {
                 flCustomTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
             } else {
                 btnTryAgain.setVisibility(show ? VISIBLE : INVISIBLE);
@@ -265,7 +277,7 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
 
         @Override
         public void setIndentedMessage(String text) {
-            if (EmptyUtil.isNotEmpty(text)) {
+            if (SLEmptyUtil.isNotEmpty(text)) {
                 tvMessage.setVisibility(VISIBLE);
                 tvMessage.setText(text);
             } else {
@@ -308,8 +320,15 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         }
 
         @Override
+        public void setTryButtonText(String text) {
+            if (SLEmptyUtil.isNotNull(btnTryAgain)) {
+                btnTryAgain.setText(text);
+            }
+        }
+
+        @Override
         public Observable<Object> setButtonClickListener() {
-            return RxView.clicks(EmptyUtil.isNotNull(tryAgainView) ? tryAgainView : btnTryAgain);
+            return RxView.clicks(SLEmptyUtil.isNotNull(tryAgainView) ? tryAgainView : btnTryAgain);
         }
 
         @Override

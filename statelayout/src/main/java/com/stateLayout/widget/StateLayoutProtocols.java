@@ -1,6 +1,7 @@
 package com.stateLayout.widget;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import com.stateLayout.widget.listeners.OnTryAgainListener;
 
@@ -28,6 +29,8 @@ public interface StateLayoutProtocols {
 
     void setCustomTryAgainButton(View view);
 
+    void setButtonText(String text);
+
     void setProgressBarColor(int color);
 
     void setTryButtonColor(int color);
@@ -35,6 +38,8 @@ public interface StateLayoutProtocols {
     void setOnTryAgainListener(OnTryAgainListener onTryAgainListener);
 
     Observable<Object> setOnTryAgainListener();
+
+    ImageView getIndentedImageView();
 
     void onDestroy();
 }

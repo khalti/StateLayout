@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.content.res.AppCompatResources;
 
-public class ResourceUtil {
+public class SLResourceUtil {
     public static String getString(Context context, int id) {
         return context.getResources().getString(id);
     }
