@@ -110,6 +110,11 @@ public class StateLayoutPresenter implements StateLayoutContract.Presenter {
     }
 
     @Override
+    public void onSetTryButtonText(String text) {
+        view.setTryButtonText(text);
+    }
+
+    @Override
     public void onSetTryAgainListener(OnTryAgainListener onTryAgainListener) {
         compositeDisposable.add(view.setButtonClickListener().subscribe(aVoid -> onTryAgainListener.onTryAgain()));
     }

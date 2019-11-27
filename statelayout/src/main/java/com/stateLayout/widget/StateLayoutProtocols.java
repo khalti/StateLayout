@@ -28,6 +28,8 @@ public interface StateLayoutProtocols {
 
     void setCustomTryAgainButton(View view);
 
+    void setButtonText(String text);
+
     void setProgressBarColor(int color);
 
     void setTryButtonColor(int color);

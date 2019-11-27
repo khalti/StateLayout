@@ -127,6 +127,13 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
     }
 
     @Override
+    public void setButtonText(String text) {
+        if (EmptyUtil.isNotNull(presenter)) {
+            presenter.onSetTryButtonText(text);
+        }
+    }
+
+    @Override
     public void setProgressBarColor(int color) {
         if (EmptyUtil.isNotNull(presenter)) {
             presenter.onSetProgressBarColor(color);
@@ -305,6 +312,13 @@ public class StateLayout extends FrameLayout implements StateLayoutProtocols {
         @Override
         public void setTryButtonColor(int color) {
             btnTryAgain.setBackgroundTintList(getResources().getColorStateList(color));
+        }
+
+        @Override
+        public void setTryButtonText(String text) {
+            if (EmptyUtil.isNotNull(btnTryAgain)) {
+                btnTryAgain.setText(text);
+            }
         }
 
         @Override

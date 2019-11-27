@@ -27,6 +27,8 @@ public interface StateLayoutContract {
 
         void setTryButtonColor(int color);
 
+        void setTryButtonText(String text);
+
         Observable<Object> setButtonClickListener();
 
         Presenter getPresenter();
@@ -59,6 +61,8 @@ public interface StateLayoutContract {
         void onSetProgressBarColor(int color);
 
         void onSetTryButtonColor(int color);
+
+        void onSetTryButtonText(String text);
 
         void onSetTryAgainListener(OnTryAgainListener onTryAgainListener);
 
