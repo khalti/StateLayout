@@ -1,52 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <com.stateLayout.widget.StateLayout
+        android:id="@+id/slSample"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="match_parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_scrollFlags="scroll|enterAlways|snap" />
-    </android.support.design.widget.AppBarLayout>
-
-    <com.otaliastudios.nestedscrollcoordinatorlayout.NestedScrollCoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.design.widget.AppBarLayout
+        <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_scrollFlags="scroll|enterAlways|snap" />
-        </android.support.design.widget.AppBarLayout>
-
-        <com.stateLayout.widget.StateLayout
-            android:id="@+id/slSample"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:custom_error="@layout/custom_view"
-            app:custom_try_again="@layout/custom_try_again_view"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Text"
-                android:textSize="34sp" />
-        </com.stateLayout.widget.StateLayout>
-    </com.otaliastudios.nestedscrollcoordinatorlayout.NestedScrollCoordinatorLayout>
+            android:gravity="center"
+            android:text="Text"
+            android:textSize="34sp" />
+    </com.stateLayout.widget.StateLayout>
 </android.support.design.widget.CoordinatorLayout>

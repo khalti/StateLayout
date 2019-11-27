@@ -2,7 +2,7 @@ package com.stateLayout.utils;
 
 import android.util.Log;
 
-public class LogUtil {
+public class SLLogUtil {
     // Do logs need to be visible ?
     private static final boolean DEBUG = true;
 
